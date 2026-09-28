@@ -1,0 +1,15 @@
+C:\Users\alvas\OneDrive\Desktop\Programmering med C# .NET\Laboration 3\bin\Debug\net10.0\Laboration 3.exe
+C:\Users\alvas\OneDrive\Desktop\Programmering med C# .NET\Laboration 3\bin\Debug\net10.0\Laboration 3.deps.json
+C:\Users\alvas\OneDrive\Desktop\Programmering med C# .NET\Laboration 3\bin\Debug\net10.0\Laboration 3.runtimeconfig.json
+C:\Users\alvas\OneDrive\Desktop\Programmering med C# .NET\Laboration 3\bin\Debug\net10.0\Laboration 3.dll
+C:\Users\alvas\OneDrive\Desktop\Programmering med C# .NET\Laboration 3\bin\Debug\net10.0\Laboration 3.pdb
+C:\Users\alvas\OneDrive\Desktop\Programmering med C# .NET\Laboration 3\obj\Debug\net10.0\Laboration 3.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\alvas\OneDrive\Desktop\Programmering med C# .NET\Laboration 3\obj\Debug\net10.0\Laboration 3.AssemblyInfoInputs.cache
+C:\Users\alvas\OneDrive\Desktop\Programmering med C# .NET\Laboration 3\obj\Debug\net10.0\Laboration 3.AssemblyInfo.cs
+C:\Users\alvas\OneDrive\Desktop\Programmering med C# .NET\Laboration 3\obj\Debug\net10.0\Laboration 3.csproj.CoreCompileInputs.cache
+C:\Users\alvas\OneDrive\Desktop\Programmering med C# .NET\Laboration 3\obj\Debug\net10.0\Laboration 3.sourcelink.json
+C:\Users\alvas\OneDrive\Desktop\Programmering med C# .NET\Laboration 3\obj\Debug\net10.0\Laboration 3.dll
+C:\Users\alvas\OneDrive\Desktop\Programmering med C# .NET\Laboration 3\obj\Debug\net10.0\refint\Laboration 3.dll
+C:\Users\alvas\OneDrive\Desktop\Programmering med C# .NET\Laboration 3\obj\Debug\net10.0\Laboration 3.pdb
+C:\Users\alvas\OneDrive\Desktop\Programmering med C# .NET\Laboration 3\obj\Debug\net10.0\Laboration 3.genruntimeconfig.cache
+C:\Users\alvas\OneDrive\Desktop\Programmering med C# .NET\Laboration 3\obj\Debug\net10.0\ref\Laboration 3.dll
