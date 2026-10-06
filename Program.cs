@@ -1,12 +1,18 @@
 ﻿/* 
-Här kommer header
+Projekt: Gästbok i C#
+
+Författare: Alva Stern
+Datum: 06-10-2026
+
+Beskrivning: En gästbok som sparar inlägg i en lista och sparar
+             den i en JSON-fil. En användare kan lägga till inlägg,
+             ta bort inlägg och se alla inlägg som finns i gästboken.
 */
 
 using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using System.IO;
-using System.Runtime.InteropServices;
 
 namespace guestbook
 {
@@ -17,8 +23,10 @@ namespace guestbook
             // Lista som sparar alla inlägg
             List<Post> listPosts = new List<Post>();
 
+            // Filnamn som används när inlägg sparas i JSON-format
             string filePath = "guestbook.json";
 
+            // Om en fil finns läses den in och deserialiseras till listan med inlägg
             if(File.Exists(filePath))
             {
                 string json = File.ReadAllText(filePath);
@@ -36,7 +44,7 @@ namespace guestbook
                 // Loopar igenom listan
                 foreach(Post post in listPosts)
                 {
-                    Console.WriteLine(index);
+                    Console.Write("[" + index + "] ");
                     Console.WriteLine(post.owner);
                     Console.WriteLine(post.postText);
                     index++;
@@ -49,6 +57,12 @@ namespace guestbook
 
                 // Läs menyval från användaren
                 string menyVal = Console.ReadLine();
+
+                // Felhantering om fel menyval anges
+                if(menyVal != "1" && menyVal != "2" && menyVal != "3")
+                {
+                    Console.WriteLine("Du har inte angivit något giltigt menyval");
+                }
 
                 // Menyval 1 - lägger till inlägg
                 if(menyVal == "1")
@@ -79,7 +93,7 @@ namespace guestbook
                         postText = Console.ReadLine();
                     }
 
-                    // Skapar ett projekt av klassen Post, omvandlar till JSON och lägger till i listan
+                    // Skapar ett objekt av klassen Post, omvandlar till JSON och lägger till i listan
                     Post userPost = new Post();
 
                     userPost.owner = owner;
@@ -87,6 +101,7 @@ namespace guestbook
 
                     listPosts.Add(userPost);
 
+                    // Sparar listan med inlägg i JSON-format
                     string json = JsonSerializer.Serialize(listPosts);
                     File.WriteAllText(filePath, json);
                 }
