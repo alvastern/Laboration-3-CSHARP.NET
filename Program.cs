@@ -4,6 +4,9 @@ Här kommer header
 
 using System;
 using System.Collections.Generic;
+using System.Text.Json;
+using System.IO;
+using System.Runtime.InteropServices;
 
 namespace guestbook
 {
@@ -14,13 +17,29 @@ namespace guestbook
             // Lista som sparar alla inlägg
             List<Post> listPosts = new List<Post>();
 
+            string filePath = "guestbook.json";
+
+            if(File.Exists(filePath))
+            {
+                string json = File.ReadAllText(filePath);
+                listPosts = JsonSerializer.Deserialize<List<Post>>(json);
+            }
+
             while(true)
             {
+                // Rensar konsolen
+                Console.Clear();
+
+                // Skapar ett index för varje inlägg
+                int index = 0;
+
                 // Loopar igenom listan
                 foreach(Post post in listPosts)
                 {
+                    Console.WriteLine(index);
                     Console.WriteLine(post.owner);
                     Console.WriteLine(post.postText);
+                    index++;
                 }
 
                 // Skriver ut instruktioner
@@ -30,7 +49,6 @@ namespace guestbook
 
                 // Läs menyval från användaren
                 string menyVal = Console.ReadLine();
-                Console.WriteLine(menyVal);
 
                 // Menyval 1 - lägger till inlägg
                 if(menyVal == "1")
@@ -40,7 +58,6 @@ namespace guestbook
                     // Vem äger inlägget?
                     Console.WriteLine("Vem är ägaren till inlägget?");
                     string owner = Console.ReadLine();
-                    Console.WriteLine(owner);
 
                     // Felhantering för om ingen ägare skrivits in
                     while(string.IsNullOrWhiteSpace(owner))
@@ -53,7 +70,6 @@ namespace guestbook
                     // Vad står i inlägget
                     Console.WriteLine("Vad vill du skriva i inlägget?");
                     string postText = Console.ReadLine();
-                    Console.WriteLine(postText);
 
                     // Felhantering för om inget har skrivits i inlägget
                     while(string.IsNullOrWhiteSpace(postText))
@@ -63,19 +79,44 @@ namespace guestbook
                         postText = Console.ReadLine();
                     }
 
-                    // Skapar ett projekt av klassen Post och lägger till i listan
+                    // Skapar ett projekt av klassen Post, omvandlar till JSON och lägger till i listan
                     Post userPost = new Post();
 
                     userPost.owner = owner;
                     userPost.postText = postText;
 
                     listPosts.Add(userPost);
+
+                    string json = JsonSerializer.Serialize(listPosts);
+                    File.WriteAllText(filePath, json);
                 }
 
                 // Menyval 2 - tar bort ett inlägg
                 if(menyVal == "2")
                 {
-                    Console.WriteLine("Du valde att ta bort ett inlägg");
+                    Console.WriteLine("Vilket index vill du ta bort?");
+                    string deleteIndex = Console.ReadLine();
+
+                    int selectedIndex = 0;
+
+                    if(int.TryParse(deleteIndex, out selectedIndex))
+                    {
+                       if(selectedIndex >= 0 && selectedIndex < listPosts.Count)
+                        {
+                            listPosts.RemoveAt(selectedIndex);
+
+                            string json = JsonSerializer.Serialize(listPosts);
+                            File.WriteAllText(filePath, json);
+
+                        } else
+                        {
+                            Console.WriteLine("Det finns inget inlägg med det indexet");
+                        }
+
+                    } else
+                    {
+                        Console.WriteLine("Du måste ange ett heltal");
+                    }
                 }
 
                 // Menyval 3 - Avsluta
@@ -84,6 +125,9 @@ namespace guestbook
                     Console.WriteLine("Du valde att avsluta");
                     break;
                 }
+
+                Console.WriteLine("Tryck enter för att fortsätta");
+                Console.ReadLine();
             }
         }
     }
